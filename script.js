@@ -1,20 +1,15 @@
-const inputEL = (document.getElementsByClassName ('app__controls-input')) [0]
+const inputEl = (document.getElementsByClassName ('app__controls-input')) [0]
 const btnEl = (document.getElementsByClassName('app__controls-button'))[0]
 const listEl = (document.getElementsByClassName('app__list'))[0]
 let counter = 1
-const data = [
-    {id: 3, text: 'adsld', isDone: true},
-    {id: 10, text: 'dojda', isDone: false}
-]
+
  
 data.forEach((item)=> {
     if(item.id>counter) {
         counter= item.id + 1
     }
 })
-if(counter > 1){
-    counter++
-}
+
 
 
 function createTask (objectData) {
@@ -57,7 +52,7 @@ function createTask (objectData) {
 btnEl.addEventListener('click',()=> {
     const textValue = inputEL.value 
     data.push ({
-        id: 3,
+        id: counter++,
         text: textValue,
         isDone: false
     })
@@ -66,13 +61,11 @@ btnEl.addEventListener('click',()=> {
 })
 
 function render () {
-    //listEl.innerHTML = ''
-    for(let item in data) {
+    listEl.innerHTML = ''
+    for(let item of data) {
         const tmpElement = createTask (item)
         listEl.appendChild(tmpElement)
     }
 }
 
 render()
-
-createTask()
