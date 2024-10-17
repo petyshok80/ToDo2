@@ -3,9 +3,10 @@ const btnEl = (document.getElementsByClassName('app__controls-button'))[0]
 const listEl = (document.getElementsByClassName('app__list'))[0]
 let counter = 1
 
- 
+
+
 data.forEach((item)=> {
-    if(item.id>counter) {
+    if(item.id>=counter) {
         counter= item.id + 1
     }
 })
@@ -63,8 +64,8 @@ btnEl.addEventListener('click',()=> {
 function render () {
     listEl.innerHTML = ''
     for(let item of data) {
-        const tmpElement = createTask (item)
-        listEl.appendChild(tmpElement)
+        const tmpEl = createTask (item)
+        listEl.appendChild(tmpEl)
     }
 }
 
