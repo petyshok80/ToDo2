@@ -2,21 +2,22 @@ const inputEl = (document.getElementsByClassName ('app__controls-input')) [0]
 const btnEl = (document.getElementsByClassName('app__controls-button'))[0]
 const listEl = (document.getElementsByClassName('app__list'))[0]
 let counter = 1
-
-
-
+const data = []
+ 
 data.forEach((item)=> {
-    if(item.id>=counter) {
+    if(item.id>counter) {
         counter= item.id + 1
     }
 })
 
+if(counter > 1){
+    counter++
+}
 
 
-function createTask (objectData) {
+function createTask(objectData) {
     const root = document.createElement ('div')
     root.classList.add('app__list-item')
-    
     if(objectData.isDone === true) {
         root.classList.add('app__list-item_done')
     }
@@ -51,21 +52,21 @@ function createTask (objectData) {
 }
 
 btnEl.addEventListener('click',()=> {
-    const textValue = inputEL.value 
+    const textValue = inputEl.value 
     data.push ({
         id: counter++,
         text: textValue,
         isDone: false
     })
     render()
-    inputEL.value = ''
+    inputEl.value = ''
 })
 
 function render () {
     listEl.innerHTML = ''
     for(let item of data) {
-        const tmpEl = createTask (item)
-        listEl.appendChild(tmpEl)
+        const tmpElement = createTask(item)
+        listEl.appendChild(tmpElement)
     }
 }
 
